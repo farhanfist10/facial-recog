@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://stjosephs.ac.in/today30102021/Six.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed; /* Fixed background */
+            padding-top: 60px; /* Space for header */
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px;
+            width: 250px;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            padding-top: 60px; /* Space for header */
+            transition: all 0.3s ease;
+            overflow-y: auto; /* Enable scrolling if content exceeds sidebar height */
+            z-index: 1; /* Ensure sidebar is above content */
+        }
+
+        .sidebar h3 {
+            color: #fff;
+            text-align: center;
+            margin-top: 0;
+        }
+
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            padding: 10px;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar li:hover {
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent white on hover */
+        }
+
+        /* Content Styles */
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+        }
+
+        .content h1 {
+            margin-top: 0;
+            color: #333; /* Dark text color */
+        }
+
+        .content h2 {
+            color: #555; /* Medium text color */
+        }
+
+        .btn {
+            background-color: #007bff; /* Blue button */
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .btn:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        .logout-btn {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+        }
+
+        /* Camera feed */
+        #camera-feed {
+            width: auto;
+            max-height: calc(100vh - 150px); /* Adjust as needed */
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar" id="sidebar">
+        <h3>Students:</h3>
+        <ul id="student-list">
+            <!-- Student details will be dynamically added here -->
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>Welcome to the Dashboard</h1>
+        <h2>User: {{user_email}}</h2>
+        <a href="#" class="btn" onclick="toggleSidebar()">Toggle Sidebar</a>
+        <a href="/add_student" class="btn">Add Student</a>
+        <div class="logout-btn">
+            <a href="/logout" class="btn">Logout</a>
+        </div>
+        <!-- Add other dashboard features here -->
+
+        <!-- Camera feed -->
+        <video id="camera-feed" autoplay playsinline></video>
+    </div>
+
+    <script>
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            if (sidebar.style.left === '-250px') {
+                sidebar.style.left = '0';
+            } else {
+                sidebar.style.left = '-250px';
+            }
+        }
+
+        // Access the camera feed
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                const videoElement = document.getElementById('camera-feed');
+                videoElement.srcObject = stream;
+            } catch (error) {
+                console.error('Error accessing camera:', error);
+            }
+        }
+
+        // Call startCamera when the page loads
+        window.onload = function() {
+            startCamera();
+        };
+
+        // Sample students data for demonstration
+        var students = [
+            { id: 1, name: "John Doe" },
+            { id: 2, name: "Jane Smith" },
+            { id: 3, name: "Alice Johnson" }
+        ];
+
+        console.log("List of students:");
+        students.forEach(function(student) {
+            console.log("ID: " + student.id + ", Name: " + student.name);
+        });
+    </script>
+</body>
+</html>

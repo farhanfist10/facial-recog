@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facial Attendance Maintenance System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('https://tse1.mm.bing.net/th?id=OIP.vHtm1-iasuHR0yBAnGPkZwAAAA&pid=Api&P=0&h=180');
+            background-repeat: no-repeat;
+            background-size: auto 50px; /* Adjust the size of the background image */
+            background-position: 20px 20px; /* Position the background image at the top left corner */
+        }
+
+        .icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 50px; /* Adjust the width of the icon */
+            height: 50px; /* Adjust the height of the icon */
+            background-image: url('https://tse1.mm.bing.net/th?id=OIP.vHtm1-iasuHR0yBAnGPkZwAAAA&pid=Api&P=0&h=180');
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 50%; /* Make the icon circular */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a shadow to the icon */
+        }
+
+        h1 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-top: 30px;
+            color: #333;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.1em;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin: 30px 0 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            font-size: 1.1em;
+            padding-left: 20px;
+            text-align: left;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s ease;
+            display: block;
+            margin: 0 auto;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        a {
+            text-decoration: none;
+            color: #3498db;
+            transition: color 0.3s ease;
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="icon"></div>
+    {% if 'user' in session %}
+        <a href="/logout"><button>Logout</button></a>
+    {% endif %}
+
+    <h1>Welcome to the Facial Attendance Maintenance System {{user_name}}!</h1>
+    <p>
+        The real-time face recognition system for student attendance management utilizes a combination of computer vision and deep learning techniques to efficiently and accurately track attendance.
+    </p>
+    
+    <h2>System Workflow:</h2>
+    <ul>
+        <li>
+            Face Detection: The system starts by detecting and isolating faces within live video feeds. This process involves using computer vision algorithms to identify facial regions in the video frames.
+        </li>
+        <li>
+            Feature Extraction: Once faces are detected, the system extracts important facial features such as shape, texture, and color. These features are essential for distinguishing one face from another.
+        </li>
+        <li>
+            Face Embeddings: The extracted facial features are encoded into mathematical representations called face embeddings. Face embeddings capture unique characteristics of each face in a compact numerical format.
+        </li>
+        <li>
+            Database Comparison: The encoded face vectors are then compared against a pre-existing database of registered students. This comparison is typically done using machine learning algorithms that measure the similarity between face embeddings.
+        </li>
+    </ul>
+</body>
+</html>
